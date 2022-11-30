@@ -1,3 +1,5 @@
+import csv
+
 class Item:
     pay_rate = 0.8 # Class Attribute
     all = [] # List to store all the instances that have been created
@@ -26,7 +28,16 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        print("Class Method")
+        with open('items.csv', 'r') as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+
+        for item in items:
+            Item(
+                name = item.get('name'),
+                price = int(item.get('price')),
+                quantity = int(item.get('quantity')),
+            )
 
     # With the __repr__ we can specify the way we want to represent our object, when printing it out
     def __repr__(self):
@@ -41,7 +52,7 @@ if __name__ == '__main__':
     item4 = Item("Mouse", 50, 5)
     item5 = Item("Keyboard", 75, 5)
 
-    #print(Item.all)
 
     print(Item.instantiate_from_csv())
+    print(Item.all)
 
