@@ -30,6 +30,22 @@ class Item:
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
-if __name__ == '__main__':
+class Phone(Item):
+    # Constructor in the child class, the last items inside the __init__ should be the
+    # child class' own items.
+    def __init__(self, name: str, price: int, quantity: int, broken_phones=0):
+        # Call to super function to have access to all attributes / methods
+        super().__init__(name, price, quantity)
 
+        # Run validations to the received arguments:
+        assert broken_phones >= 0, f"Broken Phones {broken_phones} is not greater or equal to 0(zero)"
+
+        #Assign to self object
+        self.broken_phones = broken_phones
+
+if __name__ == '__main__':
+    phone1 = Phone('jscPhonev10',500,5)
+    phone2 = Phone('jscPhonev20',700,5)
+
+    print(phone1.broken_phones)
 
