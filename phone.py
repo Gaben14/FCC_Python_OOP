@@ -1,3 +1,5 @@
+from item import Item # importing the item class
+
 class Phone(Item):
     # Constructor in the child class, the last items inside the __init__ should be the
     # child class' own items.
